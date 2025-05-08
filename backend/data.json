@@ -1,0 +1,338 @@
+[
+  {
+    "id": "669b90ef-42bb-40af-bcf6-4639d6f89d98",
+    "username": "user1",
+    "type": "in",
+    "dateTime": "2025-05-05T17:07:03.000Z"
+  },
+  {
+    "id": "503679b1-471f-48f9-bc42-1bbd1a9a2313",
+    "username": "user1",
+    "type": "out",
+    "dateTime": "2025-05-05T17:07:04.000Z"
+  },
+  {
+    "id": "2ff442a2-d7d2-4a8b-8840-807e54893440",
+    "username": "user1",
+    "type": "in",
+    "dateTime": "2025-05-05T17:49:10Z"
+  },
+  {
+    "id": "f5f4f6ad-6f01-428e-930f-2d5ca9257482",
+    "username": "user1",
+    "type": "out",
+    "dateTime": "2025-05-05T17:49:11Z"
+  },
+  {
+    "id": "72633e87-6d2b-4358-a7ab-413c1b302d62",
+    "username": "user1",
+    "type": "in",
+    "dateTime": "2025-05-06T16:11:28Z"
+  },
+  {
+    "id": "acbc372b-1d3c-49c1-91f9-568ab82dfd89",
+    "username": "user1",
+    "type": "out",
+    "dateTime": "2025-05-06T16:11:29Z"
+  },
+  {
+    "id": "ff5f5a03-028f-4316-8c13-97883d49dfe0",
+    "username": "user1",
+    "type": "in",
+    "dateTime": "2025-05-07T11:44:03Z"
+  },
+  {
+    "id": "c7818242-f8cf-463f-9b68-8a0c11ce524f",
+    "username": "user1",
+    "type": "out",
+    "dateTime": "2025-05-07T11:49:22Z"
+  },
+  {
+    "id": "119f4668-1663-4d96-881f-12103cf70b89",
+    "username": "user1",
+    "type": "in",
+    "dateTime": "2025-05-07T11:49:23Z"
+  },
+  {
+    "id": "8a553174-4b75-45fc-a186-4f9f374c91fe",
+    "username": "user1",
+    "type": "out",
+    "dateTime": "2025-05-07T11:52:32Z"
+  },
+  {
+    "id": "bf396cdb-51bc-4017-9728-7edb8f8ee859",
+    "username": "user1",
+    "type": "in",
+    "dateTime": "2025-05-07T11:52:34Z"
+  },
+  {
+    "id": "b0c5baf8-c003-4bb5-aecc-1f4a0b7e3167",
+    "username": "user1",
+    "type": "out",
+    "dateTime": "2025-05-07T11:52:35Z"
+  },
+  {
+    "id": "d2be809f-196e-4e4d-8727-2084c303f798",
+    "username": "user1",
+    "type": "in",
+    "dateTime": "2025-05-07T11:52:36Z"
+  },
+  {
+    "id": "1f438870-0bcb-4f24-a046-ce7aacc75210",
+    "username": "user1",
+    "type": "out",
+    "dateTime": "2025-05-07T11:52:37Z"
+  },
+  {
+    "id": "ac76ca15-96ea-441a-b932-0fc4fb210a8f",
+    "username": "user1",
+    "type": "in",
+    "dateTime": "2025-05-07T14:09:52Z"
+  },
+  {
+    "id": "bdffaa4b-ad05-436c-83fc-63242428d402",
+    "username": "user1",
+    "type": "out",
+    "dateTime": "2025-05-07T14:09:54Z"
+  },
+  {
+    "id": "7f0a8b8f-53e0-4551-bac6-eb39622ed574",
+    "username": "user1",
+    "type": "in",
+    "dateTime": "2025-05-07T14:10:25Z"
+  },
+  {
+    "id": "59abb655-beeb-4642-8112-5a83b805a523",
+    "username": "user1",
+    "type": "out",
+    "dateTime": "2025-05-07T14:10:26Z"
+  },
+  {
+    "id": "767cb412-9452-4bd3-b8e5-e008addefab8",
+    "username": "user1",
+    "type": "in",
+    "dateTime": "2025-05-07T14:10:41Z"
+  },
+  {
+    "id": "fd91e0e0-addd-4d8a-ae5b-9930d0177cab",
+    "username": "user1",
+    "type": "out",
+    "dateTime": "2025-05-07T14:10:42Z"
+  },
+  {
+    "id": "682da2be-fe86-44b9-a864-3623a919be1a",
+    "username": "user1",
+    "type": "in",
+    "dateTime": "2025-05-07T14:33:35Z"
+  },
+  {
+    "id": "02fe8b17-882b-45da-b2f3-0ac646f15140",
+    "username": "user1",
+    "type": "out",
+    "dateTime": "2025-05-07T14:37:50Z"
+  },
+  {
+    "id": "09884718-6416-446c-b739-596cb6c02422",
+    "username": "user1",
+    "type": "in",
+    "dateTime": "2025-05-07T14:37:54Z"
+  },
+  {
+    "id": "b164c7e9-abae-46c7-a35b-09dacf9f93ea",
+    "username": "user1",
+    "type": "out",
+    "dateTime": "2025-05-07T15:00:16Z"
+  },
+  {
+    "id": "767e76c8-5450-4540-ae8e-5f94dd1867b9",
+    "username": "user1",
+    "type": "in",
+    "dateTime": "2025-05-07T16:04:50Z"
+  },
+  {
+    "id": "4b464436-9ed7-4ae5-b69d-0794f3c73625",
+    "username": "user1",
+    "type": "out",
+    "dateTime": "2025-05-07T16:04:51Z"
+  },
+  {
+    "id": "dc199b92-79b5-4103-8e24-a04a0aa258b8",
+    "username": "user1",
+    "type": "in",
+    "dateTime": "2025-05-07T16:04:52Z"
+  },
+  {
+    "id": "f2a71aee-623b-4af5-bda0-c0e3c90275d6",
+    "username": "user1",
+    "type": "out",
+    "dateTime": "2025-05-07T16:04:54Z"
+  },
+  {
+    "id": "5f93bced-6705-4e57-a5ba-0a16b08e7573",
+    "username": "user1",
+    "type": "in",
+    "dateTime": "2025-05-07T16:04:56Z"
+  },
+  {
+    "id": "5826dd9a-817c-4344-ab92-2f3c183fa7d4",
+    "username": "user1",
+    "type": "out",
+    "dateTime": "2025-05-07T16:04:57Z"
+  },
+  {
+    "id": "31d178a0-a8ad-4fe4-ba19-9c742a2409d5",
+    "username": "user1",
+    "type": "in",
+    "dateTime": "2025-05-07T16:04:57Z"
+  },
+  {
+    "id": "b1992e96-38d5-40fe-8f00-3b99ce33f988",
+    "username": "user1",
+    "type": "out",
+    "dateTime": "2025-05-07T16:04:57Z"
+  },
+  {
+    "id": "0cdc0104-3bf0-46fb-be44-0f15ffed719d",
+    "username": "user1",
+    "type": "in",
+    "dateTime": "2025-05-07T16:20:01Z"
+  },
+  {
+    "id": "f758aefb-104c-4e14-839c-deb117dd3b59",
+    "username": "user1",
+    "type": "out",
+    "dateTime": "2025-05-07T16:20:02Z"
+  },
+  {
+    "id": "52c48a82-08e9-4b2c-b500-864c653f8407",
+    "username": "user3",
+    "type": "in",
+    "dateTime": "2025-05-08T06:02:47Z"
+  },
+  {
+    "id": "9f8969ba-016b-46ff-8ddd-53a1c79382de",
+    "username": "user3",
+    "type": "out",
+    "dateTime": "2025-05-08T06:02:48Z"
+  },
+  {
+    "id": "b0a84ab2-c47d-49b7-8ef8-bc8900352b76",
+    "username": "user3",
+    "type": "in",
+    "dateTime": "2025-05-08T06:12:22Z"
+  },
+  {
+    "id": "7e3d9e4d-a7bc-470a-b139-1fbcbb5b5603",
+    "username": "user3",
+    "type": "out",
+    "dateTime": "2025-05-08T06:12:23Z"
+  },
+  {
+    "id": "b679b053-527b-40b8-8f51-91760555c053",
+    "username": "user3",
+    "type": "in",
+    "dateTime": "2025-05-08T06:44:13Z"
+  },
+  {
+    "id": "5483acd8-979f-4230-9b02-5495d7bf3910",
+    "username": "user3",
+    "type": "out",
+    "dateTime": "2025-05-08T06:44:20Z"
+  },
+  {
+    "id": "a50ca340-20a2-4f7f-900b-0a00ee750cc4",
+    "username": "user2",
+    "type": "in",
+    "dateTime": "2025-05-08T06:45:53Z"
+  },
+  {
+    "id": "dc5e09f8-b253-4192-bf28-a59990cb567c",
+    "username": "user2",
+    "type": "out",
+    "dateTime": "2025-05-08T06:45:54Z"
+  },
+  {
+    "id": "ae94e68e-04a5-4297-98bb-5481b7e242b0",
+    "username": "user2",
+    "type": "in",
+    "dateTime": "2025-05-08T06:45:55Z"
+  },
+  {
+    "id": "032896f9-155b-47af-9ad8-f9c431173c56",
+    "username": "user2",
+    "type": "out",
+    "dateTime": "2025-05-08T06:45:56Z"
+  },
+  {
+    "id": "7bdfcf29-95ec-4064-8d3e-5e1938a3d5ac",
+    "username": "user1",
+    "type": "in",
+    "dateTime": "2025-05-08T06:46:10Z"
+  },
+  {
+    "id": "a649a496-e8ad-433e-9900-54050e077434",
+    "username": "user1",
+    "type": "out",
+    "dateTime": "2025-05-08T06:46:11Z"
+  },
+  {
+    "id": "83f150a7-3efe-46af-bbe8-e0c04becf1b4",
+    "username": "user1",
+    "type": "in",
+    "dateTime": "2025-05-08T07:36:34Z"
+  },
+  {
+    "id": "7135644b-5aac-43df-9bf5-e37a1b660093",
+    "username": "user2",
+    "type": "in",
+    "dateTime": "2025-05-08T07:36:43Z"
+  },
+  {
+    "id": "b7dbeffe-0562-41cc-affb-86520bbe7a2b",
+    "username": "user1",
+    "type": "out",
+    "dateTime": "2025-05-08T07:36:57Z"
+  },
+  {
+    "id": "25038e74-87ec-43ed-aa6b-fc9784b77132",
+    "username": "user1",
+    "type": "in",
+    "dateTime": "2025-05-08T08:33:29Z"
+  },
+  {
+    "id": "6c107864-3dfb-488a-9b28-397f7eef5ce4",
+    "username": "user1",
+    "type": "out",
+    "dateTime": "2025-05-08T08:33:30Z"
+  },
+  {
+    "id": "e40416e6-3e70-4af5-8ab1-e914e137f702",
+    "username": "user1",
+    "type": "in",
+    "dateTime": "2025-05-08T09:20:54Z"
+  },
+  {
+    "id": "596fd4d0-f355-487b-b689-c3027b17bd8c",
+    "username": "user1",
+    "type": "out",
+    "dateTime": "2025-05-08T09:20:56Z"
+  },
+  {
+    "id": "f2c958d2-0aff-437d-9307-cf08e867be27",
+    "username": "user1",
+    "type": "in",
+    "dateTime": "2025-05-08T09:20:58Z"
+  },
+  {
+    "id": "8df98fee-2fb4-4924-9065-3864229f5d2a",
+    "username": "user1",
+    "type": "out",
+    "dateTime": "2025-05-08T09:21:02Z"
+  },
+  {
+    "id": "d2d28096-43b4-45c2-a21a-dfab94eb5128",
+    "username": "user1",
+    "type": "in",
+    "dateTime": "2025-05-08T09:53:49Z"
+  }
+]

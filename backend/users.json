@@ -1,0 +1,32 @@
+[
+  {
+    "username": "user1",
+    "passwordHash": "$2b$10$VyxPPN2qHARJKTuxbNpezOpBg93u7rCevI5pcbCJTaXRxXXklHlpu",
+    "role": "user"
+  },
+  {
+    "username": "user2",
+    "passwordHash": "$2b$10$zDHgOtFluYsf8g3cnUc.y.z5WMsuCCdJweGFmM50NtYLbcX.nyp8e",
+    "role": "user"
+  },
+  {
+    "username": "admin",
+    "passwordHash": "$2b$10$xYN1eTsECR/BLrjPUlpbkerNWbi5kn4CvpOPeOI8YzDENHD3L3Qbe",
+    "role": "admin"
+  },
+  {
+    "username": "user3",
+    "passwordHash": "$2b$10$CyAXG8SK8GwwrEqXQPrpBu/6tPS2V7MoxctWzjVgrPF.vyxAI.uEW",
+    "role": "user"
+  },
+  {
+    "username": "gil",
+    "passwordHash": "$2b$10$CPd2tvaDPK4696vLTNoNeu.9Cx5VzQ8G.U/DsGI2IUf/z0uIjygTe",
+    "role": "user"
+  },
+  {
+    "username": "user4",
+    "passwordHash": "$2b$10$FEAvDzgBkJimLeGusCHbwuGJy01BXhstFfGxUbV1uJ8rIM1siqoce",
+    "role": "user"
+  }
+]
