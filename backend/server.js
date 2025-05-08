@@ -18,9 +18,11 @@ function readData() {
   if (!fs.existsSync(DATA_FILE)) fs.writeFileSync(DATA_FILE, "[]");
   return JSON.parse(fs.readFileSync(DATA_FILE, "utf8"));
 }
+
 function writeData(data) {
   fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2));
 }
+
 function readUsers() {
   if (!fs.existsSync(USERS_FILE)) fs.writeFileSync(USERS_FILE, "[]");
   return JSON.parse(fs.readFileSync(USERS_FILE, "utf8"));
@@ -31,43 +33,30 @@ function writeUsers(users) {
 
 // Authentication middleware
 function authenticateToken(req, res, next) {
-  console.log("authenticating token");
   const authHeader = req.headers["authorization"];
+
   const token = authHeader && authHeader.split(" ")[1];
   if (!token) return res.status(401).json({ error: "No token provided" });
 
   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
     if (err) return res.status(403).json({ error: "Invalid token" });
-    req.user = user; // { username, role }
+    req.user = user;
     next();
   });
-}
-
-// Authorization middleware
-function authorizeRoles(...roles) {
-  return (req, res, next) => {
-    if (!req.user || !roles.includes(req.user.role)) {
-      return res.status(403).json({ error: "Forbidden" });
-    }
-    next();
-  };
 }
 
 function isAdmin(req, res, next) {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
   if (!token) return res.status(401).json({ error: "No token provided" });
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => 
-    {
-      console.log("verifying token", user);
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
     if (err) return res.status(403).json({ error: "Invalid token" });
     if (user.role !== "admin") {
       return res.status(403).json({ error: "Forbidden" });
     }
     req.user = user; // { username, role }
     next();
-  }
-  );
+  });
 }
 
 // --- Public routes ---
@@ -107,18 +96,28 @@ app.get("/api/time", (req, res) => {
 });
 
 // --- Protected routes ---
-app.get(
-  "/api/records",
-  authenticateToken,
-  authorizeRoles("admin"),
-  (req, res) => {
-    res.json(readData());
+app.get("/api/records/latest-all", isAdmin, (req, res) => {
+  const data = readData();
+
+  const inEvents = data.filter((r) => r.type === "in");
+
+  const lastInByUser = {};
+  for (const ev of inEvents) {
+    const prev = lastInByUser[ev.username];
+    if (!prev || new Date(ev.dateTime) > new Date(prev.dateTime)) {
+      lastInByUser[ev.username] = ev;
+    }
   }
-);
+
+  res.json(Object.values(lastInByUser));
+});
+
+app.get("/api/records", isAdmin, (req, res) => {
+  res.json(readData());
+});
 
 app.get("/api/records/:username", authenticateToken, (req, res) => {
   const { username } = req.params;
-  // משתמש רגיל רשאי רק על הנתונים שלו
   if (req.user.role !== "admin" && req.user.username !== username) {
     return res.status(403).json({ error: "Forbidden" });
   }
@@ -126,12 +125,9 @@ app.get("/api/records/:username", authenticateToken, (req, res) => {
   res.json(data);
 });
 
-app.get(
-  "/api/records/:username/month/:month/:year",
-  authenticateToken,
+app.get("/api/records/:username/month/:month/:year", authenticateToken,
   (req, res) => {
     const { username, month, year } = req.params;
-    // משתמש רגיל רשאי רק על הנתונים שלו
     if (req.user.role !== "admin" && req.user.username !== username) {
       return res.status(403).json({ error: "Forbidden" });
     }
@@ -144,95 +140,68 @@ app.get(
       );
     });
     res.json(data);
+  }
+);
+
+app.get("/api/records/:username/latest", authenticateToken, (req, res) => {
+  const { username } = req.params;
+  if (req.user.role !== "admin" && req.user.username !== username) {
+    return res.status(403).json({ error: "Forbidden" });
+  }
+  const data = readData().filter((r) => r.username === username);
+  if (!data.length) return res.status(404).json({ error: "Not found" });
+  const lastRecord = data[data.length - 1];
+  res.json(lastRecord);
+});
+
+app.get("/api/records/month/:month/:year", isAdmin, (req, res) => {
+  const { month, year } = req.params;
+  const data = readData().filter((r) => {
+    const date = new Date(r.dateTime);
+    return (
+      date.getMonth() + 1 === parseInt(month) &&
+      date.getFullYear() === parseInt(year)
+    );
   });
+  res.json(data);
+});
 
+app.post("/api/records", authenticateToken, (req, res) => {
+  const { type } = req.body;
+  const username = req.user.username;
+  const now = new Date().toISOString().split(".")[0] + "Z";
+  const data = readData();
+  const userRecords = data.filter((r) => r.username === username);
 
-app.get(
-  "/api/records/:username/latest",
-  authenticateToken,
-  (req, res) => {
-    const { username } = req.params;
-    if (req.user.role !== "admin" && req.user.username !== username) {
-      return res.status(403).json({ error: "Forbidden" });
+  if (userRecords.length) {
+    const last = userRecords[userRecords.length - 1];
+    if (last.type === type)
+      return res.status(400).json({ error: `Already clocked ${type}` });
+    if (
+      (type === "out" && now < last.dateTime) ||
+      (type === "in" && now < last.dateTime)
+    ) {
+      return res.status(400).json({ error: "Invalid timestamp order" });
     }
-    const data = readData().filter((r) => r.username === username);
-    if (!data.length) return res.status(404).json({ error: "Not found" });
-    const lastRecord = data[data.length - 1];
-    res.json(lastRecord);
   }
-);
+  const record = { id: uuidv4(), username, type, dateTime: now };
+  data.push(record);
+  writeData(data);
+  res.json(record);
+});
 
-app.get(
-  "/api/records/month/:month/:year",
-  authenticateToken,
-  authorizeRoles("admin"),
-  (req, res) => {
-    const { month, year } = req.params;
-    const data = readData().filter((r) => {
-      const date = new Date(r.dateTime);
-      return (
-        date.getMonth() + 1 === parseInt(month) &&
-        date.getFullYear() === parseInt(year)
-      );
-    });
-    res.json(data);
-  }
-);
-app.post(
-  "/api/records",
-  authenticateToken,
-  authorizeRoles("admin", "user"),
-  (req, res) => {
-    const { type } = req.body;
-    const username = req.user.username;
-    const now = new Date().toISOString().split(".")[0] + "Z";
-    const data = readData();
-    const userRecords = data.filter((r) => r.username === username);
+app.put("/api/records/:id", isAdmin, (req, res) => {
+  const { id } = req.params;
+  const updates = req.body;
+  const data = readData();
+  const idx = data.findIndex((r) => r.id === id);
+  if (idx === -1) return res.status(404).json({ error: "Not found" });
+  data[idx] = { ...data[idx], ...updates };
+  writeData(data);
+  res.json(data[idx]);
+});
 
-    // בדיקת יציאה/כניסה כפולה
-    if (userRecords.length) {
-      const last = userRecords[userRecords.length - 1];
-      if (last.type === type)
-        return res
-          .status(400)
-          .json({ error: `Already clocked ${type}` });
-      if (
-        (type === "out" && now < last.dateTime) ||
-        (type === "in" && now < last.dateTime)
-      ) {
-        return res
-          .status(400)
-          .json({ error: "Invalid timestamp order" });
-      }
-    }
-
-    const record = { id: uuidv4(), username, type, dateTime: now };
-    data.push(record);
-    writeData(data);
-    res.json(record);
-  }
-);
-
-app.put(
-  "/api/records/:id",
-  isAdmin,
-  (req, res) => {
-    const { id } = req.params;
-    const updates = req.body;
-    const data = readData();
-    const idx = data.findIndex((r) => r.id === id);
-    if (idx === -1) return res.status(404).json({ error: "Not found" });
-    data[idx] = { ...data[idx], ...updates };
-    writeData(data);
-    res.json(data[idx]);
-  }
-);
-
-app.delete(
-  "/api/records/:id",
-  isAdmin,
-  
-  (req, res) => {
+app.delete("/api/records/:id", isAdmin, (req, res) => {
     const { id } = req.params;
     const data = readData();
     const idx = data.findIndex((r) => r.id === id);

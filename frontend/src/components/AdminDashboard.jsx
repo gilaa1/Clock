@@ -5,6 +5,7 @@ import {
   updateRecord,
   deleteRecord,
   fetchRecordsByMonth,
+  fetchLatestAll
 } from "../api";
 import ClockComponent from "./ClockComponent";
 import DatePicker, { registerLocale } from "react-datepicker";
@@ -36,9 +37,9 @@ function formatDuration(ms) {
   return `${h}:${m}:${s}`;
 }
 
-function countActiveEmployees(records) {
+function countActiveEmployees(currentEnteries) {
   const latestByUser = {};
-  for (const ev of records) {
+  for (const ev of currentEnteries) {
     const { username, dateTime } = ev;
     if (
       !latestByUser[username] ||
@@ -50,9 +51,9 @@ function countActiveEmployees(records) {
   return Object.values(latestByUser).filter((ev) => ev.type === "in").length;
 }
 
-function getActiveEmployees(records) {
+function getActiveEmployees(currentEnteries) {
   const latestByUser = {};
-  for (const ev of records) {
+  for (const ev of currentEnteries) {
     const { username, dateTime } = ev;
     if (
       !latestByUser[username] ||
@@ -71,19 +72,33 @@ export default function AdminDashboard({ onLogout }) {
   const [selectedById, setSelectedById] = useState({});
   const [month, setMonth] = useState(new Date());
   const [showCurrentlyWorking, setShowCurrentlyWorking] = useState(false);
+  const [currentEnteries, setCurrentEntries] = useState([]);
+
 
   useEffect(() => {
-    async function load() {
-      const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
+    
+    async function loadRecords() {
       const records = await fetchRecordsByMonth(
         month.getMonth() + 1,
         month.getFullYear(),
         token
+        
       );
       setRecords(records);
     }
 
-    load();
+    async function loadCurrentlyWorking(){
+      console.log("token:" ,token)
+      const latest = await fetchLatestAll(token);
+      console.log("latest: ", latest);
+
+      setCurrentEntries(latest);
+
+    }
+
+    loadRecords();
+    loadCurrentlyWorking();
   }, [month]);
 
   const shifts = useMemo(() => {
@@ -217,8 +232,8 @@ export default function AdminDashboard({ onLogout }) {
     setShowCurrentlyWorking(!showCurrentlyWorking);
   };
 
-  const activeCount = useMemo(() => countActiveEmployees(records), [records]);
-  const activeUsers = useMemo(() => getActiveEmployees(records), [records]);
+  const activeCount = useMemo(() => countActiveEmployees(currentEnteries), [currentEnteries]);
+  const activeUsers = useMemo(() => getActiveEmployees(currentEnteries), [currentEnteries]);
 
   return (
     <div className="max-w-4xl mx-auto mt-8 p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg">

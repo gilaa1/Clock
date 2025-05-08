@@ -29,14 +29,14 @@ export function fetchRecordsByUsername(username) {
   return api.get(`/records/${username}`).then((res) => res.data);
 }
 
-export function fetchRecordsByMonthAndUser(username, month, year, token) {
-  return api
+export async function fetchRecordsByMonthAndUser(username, month, year, token) {
+  const res = await api
     .get(`/records/${username}/month/${month}/${year}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    })
-    .then((res) => res.data);
+    });
+  return res.data;
 }
 
 export function fetchLatestRecordByUsername(username, token) {
@@ -49,23 +49,22 @@ export function fetchLatestRecordByUsername(username, token) {
     .then((res) => res.data);
 }
 
-export function fetchRecordsByMonth(month, year, token) {
-  console.log("fetchRecordsByMonth", month, year);
-  return api
+export async function fetchRecordsByMonth(month, year, token) {
+  const res = await api
     .get(`/records/month/${month}/${year}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }
-    )
-    .then((res) => res.data);
+    );
+  return res.data;
 }
 
 export function stamp(username, type, token) {
   return api
     .post(
-      "/records",
+      `/records`,
       { username, type },
       {
         headers: {
@@ -90,3 +89,15 @@ export function deleteRecord(id, token) {
     },
   });
 }
+
+export async function fetchLatestAll(token) {
+  const res = await api.get("/records/latest-all", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  console.log(res)
+  return res.data;
+}
+
+

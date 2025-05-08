@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import { signup } from "../api";
-import ClockComponent from "./ClockComponent";
 
 export default function Signup({ onSignup }) {
   const [username, setUsername] = useState("");
